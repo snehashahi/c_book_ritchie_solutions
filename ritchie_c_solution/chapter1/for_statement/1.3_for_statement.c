@@ -12,7 +12,7 @@ Version      : 1.0.0
 /*Select the follwing flag to run the particular test*/
 
 #define FAREN_2_CELSIUS    0  //This table prints farenheit to celsius table using for loop
-#define EXERCISE_1_5       1  //This table prints farenhiet to celsius table in reverse order 
+#define EXERCISE_1_5       0  //This table prints farenhiet to celsius table in reverse order 
 /*****************************************************/
 
 int main()
