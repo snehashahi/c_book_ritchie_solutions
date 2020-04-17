@@ -13,10 +13,12 @@ Version      : 1.0.0
 #define COPIES_IN_OUT      0 //Copies input to output
 #define EXERCISE_1_6       0 //Verify that c!=EOF is 0 or 1
 #define EXERCISE_1_7       0 ///Print EOF
+#define COUNT_CHAR         0 ///count character until eof is detected
 /*****************************************************/
 
 int main()
 {
+
 #if COPIES_IN_OUT
   int c = getchar();
   while(c != EOF)
@@ -25,6 +27,7 @@ int main()
     c = getchar();
   }
 #endif
+
 #if EXERCISE_1_6
   while((getchar() != EOF))
   { 
@@ -33,6 +36,7 @@ int main()
 
   printf("the expression is EOF 1\n");
 #endif
+
 #if EXERCISE_1_7
   int c = getchar();
   while(c != EOF)
@@ -40,6 +44,15 @@ int main()
     c = getchar();
   }
   printf("The value of EOF is %d\n",c);
+#endif
+
+#if COUNT_CHAR
+  int nc = 0;
+
+  while(getchar() != EOF)  
+    ++nc;
+ 
+ printf("Number of character is %1d\n", nc);
 #endif
   return 0;
 }
