@@ -14,6 +14,8 @@ Version      : 1.0.0
 #define EXERCISE_1_6       0 //Verify that c!=EOF is 0 or 1
 #define EXERCISE_1_7       0 ///Print EOF
 #define COUNT_CHAR         0 ///count character until eof is detected
+#define EXERCISE_1_8       0 //COUNT LINES, TABS and blank spaces
+#define EXERCISE_1_9       0 //copies input to output and relace 2 blanks by 1 blank
 /*****************************************************/
 
 int main()
@@ -53,6 +55,41 @@ int main()
     ++nc;
  
  printf("Number of character is %1d\n", nc);
+#endif
+
+#if EXERCISE_1_8
+  int nL = 0;
+  int nB = 0;
+  int nT = 0;
+  int c  = 0;
+  while((c = getchar()) != EOF)
+  {
+    if(c == '\n')
+      nL++;
+    if(c == '\t')
+      nT++;
+    if(c == ' ')
+      nB++;
+     
+  }
+
+  printf("number of lines =%d, tab=%d, blank=%d\n", nL,nT, nB);
+#endif
+
+#if EXERCISE_1_9
+//need to fis this case
+  int c = 0;
+  while( (c=getchar()) != EOF)
+  { 
+    if(c == ' ')
+    {
+      if(getchar() != ' ')
+        putchar(c);
+    }
+    else
+      putchar(c);
+
+  }
 #endif
   return 0;
 }
