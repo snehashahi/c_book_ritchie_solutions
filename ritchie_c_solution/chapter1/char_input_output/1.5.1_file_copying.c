@@ -7,7 +7,7 @@ Version      : 1.0.0
 */
 
 #include "stdio.h"
-
+#include "stdbool.h"
 /*****************************************************/
 /*Select the follwing flag to run the particular test*/
 #define COPIES_IN_OUT      0 //Copies input to output
@@ -15,7 +15,8 @@ Version      : 1.0.0
 #define EXERCISE_1_7       0 ///Print EOF
 #define COUNT_CHAR         0 ///count character until eof is detected
 #define EXERCISE_1_8       0 //COUNT LINES, TABS and blank spaces
-#define EXERCISE_1_9       0 //copies input to output and relace 2 blanks by 1 blank
+#define EXERCISE_1_9       0 //copies input to output and replace 2 blanks by 1 blank
+#define EXERCISE_1_10      1 //copies input to output and replace specil characters
 /*****************************************************/
 
 int main()
@@ -77,18 +78,43 @@ int main()
 #endif
 
 #if EXERCISE_1_9
-//need to fis this case
   int c = 0;
-  while( (c=getchar()) != EOF)
+  bool spacePresent = false;
+  while( (c = getchar()) != EOF)
   { 
     if(c == ' ')
     {
-      if(getchar() != ' ')
+      if(!spacePresent)
+      {
+        spacePresent = true;
         putchar(c);
+      }
     }
     else
+    {
       putchar(c);
+      spacePresent = false;
+    }
 
+  }
+#endif
+
+#if EXERCISE_1_10
+  int slash = '\\';
+  int tab = '\t';
+  int backspace = 'b';
+  int c = 0;
+  while((c = getchar()) != EOF)
+  {
+   if(c == '\t')
+   {
+     putchar(slash);
+     putchar(tab);
+   }
+   if(c != '\t')
+   {
+     putchar(c);
+   } 
   }
 #endif
   return 0;
