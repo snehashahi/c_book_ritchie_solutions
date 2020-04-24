@@ -16,7 +16,7 @@ Version      : 1.0.0
 #define COUNT_CHAR         0 ///count character until eof is detected
 #define EXERCISE_1_8       0 //COUNT LINES, TABS and blank spaces
 #define EXERCISE_1_9       0 //copies input to output and replace 2 blanks by 1 blank
-#define EXERCISE_1_10      1 //copies input to output and replace specil characters
+#define EXERCISE_1_10      0 //copies input to output and replace special characters
 /*****************************************************/
 
 int main()
@@ -101,7 +101,7 @@ int main()
 
 #if EXERCISE_1_10
   int slash = '\\';
-  int tab = '\t';
+  int tab = 't';
   int backspace = 'b';
   int c = 0;
   while((c = getchar()) != EOF)
@@ -111,7 +111,17 @@ int main()
      putchar(slash);
      putchar(tab);
    }
-   if(c != '\t')
+   if(c == '\b')
+   {
+     putchar(slash);
+     putchar(backspace);
+   }
+   if( c == '\\')
+   {
+     putchar(slash);
+     putchar(slash);
+   }
+   if((c != '\t') && (c != 'b') && (c != '\\'))
    {
      putchar(c);
    } 
