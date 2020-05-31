@@ -10,7 +10,8 @@ Version      : 1.0.0
 
 /*****************************************************/
 /*Select the follwing flag to run the particular test*/
-#define COUNT_DIGITS_SPACES    0 //Count spaces digit and others
+#define COUNT_DIGITS_SPACES       0 //Count spaces digit and others
+#define PRINT_HISTOGRAM_OF_WORDS  0
 /*****************************************************/
 
 int main()
@@ -42,6 +43,56 @@ for(int i = 0; i < 10; i++)
   printf("%d",nDigits[i]);
 
 printf("\nwhites spaces = %d others = %d\n ", nSpaces, nOthers);
+#endif
+
+#if PRINT_HISTOGRAM_OF_WORDS
+int wordLength, c, resetWordLength;
+wordLength = c = resetWordLength = 0;
+int nWord[11];
+int wordSize = 11;
+for(int i = 0; i < 10 ; i++)
+{
+  nWord[i] = 0;
+}
+while((c = getchar()) != EOF)
+{
+  if(c == ' ' || c == '\n' || c == '\t')
+  {
+    resetWordLength = 1;
+  }
+  else
+  {
+    resetWordLength = 0;
+    wordLength++;
+  }
+
+  if(resetWordLength)
+  {
+    for(int i = 0; i < wordSize; i++)
+    {
+      if(wordLength == i)
+        nWord[i] = wordLength; 
+      if(wordLength > (wordSize - 1))
+        nWord[wordSize - 1] = wordLength; 
+    }
+    wordLength  = 0;
+  }
+}
+for(int i = 0; i < wordSize; i++)
+  printf("%d ", nWord[i]);
+printf("\n");
+
+for(int i = 1; i < wordSize; i++)
+{
+  printf("%2d", i);
+  printf("|");
+  if(nWord[i] == i || (nWord[i] > (wordSize - 1)))
+  {
+    for(int j = 0;j < nWord[i]; j++)
+      printf("X");
+  }
+  printf("\n");
+}
 #endif
   return 0;
 }
