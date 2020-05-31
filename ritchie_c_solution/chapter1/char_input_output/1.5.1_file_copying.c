@@ -17,6 +17,17 @@ Version      : 1.0.0
 #define EXERCISE_1_8       0 //COUNT LINES, TABS and blank spaces
 #define EXERCISE_1_9       0 //copies input to output and replace 2 blanks by 1 blank
 #define EXERCISE_1_10      0 //copies input to output and replace special characters
+#define COUNT_WORD         0 //calulate line, character and words
+
+
+
+/* COUNT_WORD Starts*/
+#if COUNT_WORD
+#define OUT 0  //Outside of word
+#define IN  1  //Inside of word
+#endif
+/* COUNT_WORD Ends*/
+
 /*****************************************************/
 
 int main()
@@ -127,6 +138,29 @@ int main()
    } 
   }
 #endif
-  return 0;
+#if COUNT_WORD
+ int nC, nL, nW, state, c;
+ nC = nL = nW = c = 0;
+ state = OUT;
+ while((c = getchar()) != EOF)
+ {
+   nC++;
+   
+   if(c == '\n')
+     nL++;
+   
+   if(c == '\n' || c == '\t' || c == ' ')
+   state =  OUT;
+   else if(state == OUT)
+   {
+     state = IN;
+     nW++;
+   } 
+ }
+
+ printf("\nchar =%d, lines =%d word=%d\n", nC, nL, nW);
+
+#endif 
+ return 0;
 }
 
