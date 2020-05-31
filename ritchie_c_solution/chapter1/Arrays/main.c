@@ -11,9 +11,10 @@ Version      : 1.0.0
 /*****************************************************/
 /*Select the follwing flag to run the particular test*/
 #define COUNT_DIGITS_SPACES       0 //Count spaces digit and others
-#define PRINT_HISTOGRAM_OF_WORDS  0
-/*****************************************************/
+#define EXERCISE_1_13             0 //Print histogram of length of words
 
+
+/*****************************************************/
 int main()
 {
 #if COUNT_DIGITS_SPACES
@@ -45,7 +46,7 @@ for(int i = 0; i < 10; i++)
 printf("\nwhites spaces = %d others = %d\n ", nSpaces, nOthers);
 #endif
 
-#if PRINT_HISTOGRAM_OF_WORDS
+#if EXERCISE_1_13
 int wordLength, c, resetWordLength;
 wordLength = c = resetWordLength = 0;
 int nWord[11];
