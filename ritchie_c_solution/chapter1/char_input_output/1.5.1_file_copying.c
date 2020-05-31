@@ -10,15 +10,15 @@ Version      : 1.0.0
 #include "stdbool.h"
 /*****************************************************/
 /*Select the follwing flag to run the particular test*/
-#define COPIES_IN_OUT      0 //Copies input to output
-#define EXERCISE_1_6       0 //Verify that c!=EOF is 0 or 1
-#define EXERCISE_1_7       0 ///Print EOF
-#define COUNT_CHAR         0 ///count character until eof is detected
-#define EXERCISE_1_8       0 //COUNT LINES, TABS and blank spaces
-#define EXERCISE_1_9       0 //copies input to output and replace 2 blanks by 1 blank
-#define EXERCISE_1_10      0 //copies input to output and replace special characters
-#define COUNT_WORD         0 //calulate line, character and words
-
+#define COPIES_IN_OUT     0 //Copies input to output
+#define EXERCISE_1_6      0 //Verify that c!=EOF is 0 or 1
+#define EXERCISE_1_7      0 ///Print EOF
+#define COUNT_CHAR        0 ///count character until eof is detected
+#define EXERCISE_1_8      0 //COUNT LINES, TABS and blank spaces
+#define EXERCISE_1_9      0 //copies input to output and replace 2 blanks by 1 blank
+#define EXERCISE_1_10     0 //copies input to output and replace special characters
+#define COUNT_WORD        0 //calculate line, character and words
+#define EXERCISE_1_12     0 //Print one word per line
 
 
 /* COUNT_WORD Starts*/
@@ -161,6 +161,27 @@ int main()
  printf("\nchar =%d, lines =%d word=%d\n", nC, nL, nW);
 
 #endif 
+
+#if EXERCISE_1_12
+
+ int c, printL;
+ c = printL = 0;
+ while((c = getchar()) != EOF)
+ {
+   if((c == '\n' || c == '\t' || c == ' '))
+   {
+     if(printL == 0)
+       printf("\n");
+     printL = 1;
+   }
+   else
+   { 
+     printf("%c", c);
+     printL = 0;
+   } 
+ }
+
+#endif
  return 0;
 }
 
