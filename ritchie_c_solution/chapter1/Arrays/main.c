@@ -12,7 +12,7 @@ Version      : 1.0.0
 /*Select the follwing flag to run the particular test*/
 #define COUNT_DIGITS_SPACES       0 //Count spaces digit and others
 #define EXERCISE_1_13             0 //Print histogram of length of words
-
+#define EXERCISE_1_14             0 //Print hostogram of frequency of character
 
 /*****************************************************/
 int main()
@@ -88,6 +88,35 @@ for(int i = 1; i < wordSize; i++)
   printf("%2d", i);
   printf("|");
   if(nWord[i] == i || (nWord[i] > (wordSize - 1)))
+  {
+    for(int j = 0;j < nWord[i]; j++)
+      printf("X");
+  }
+  printf("\n");
+}
+#endif
+
+#if EXERCISE_1_14
+
+int c = 0;
+int nWord[256];
+int wordSize = 256;
+for(int i = 0; i < wordSize ; i++)
+{
+  nWord[i] = 0;
+}
+while((c = getchar()) != EOF)
+{
+  ++nWord[c];
+}
+for(int i = 0; i < wordSize; i++)
+  printf("%d ", nWord[i]);
+printf("\n");
+
+for(int i = 0; i < wordSize; i++)
+{
+  printf("%3d", i);
+  printf("|");
   {
     for(int j = 0;j < nWord[i]; j++)
       printf("X");
