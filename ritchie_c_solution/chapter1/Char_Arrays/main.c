@@ -12,10 +12,12 @@ Version      : 1.0.0
 /*Select the follwing flag to run the particular test*/
 #define COPY_LONGEST_LINE   0 //Finds the getline and copy the maximum line
 #define EXERCISE_1_18       0 //Print all the input line that are greater than 80 character
+#define EXERCISE_1_19       0 //Removing trailing lines and tabs from a line
 /*****************************************************/
 
 int getlineL(char line[], int max_length);
 void copy(char dest[], char src[]);
+int removeTrailingBlanksTabs(char line[], char FilteredLine[],  int max_length);
 #define MAX_SIZE 1000 //maximumsize of the array
 
 int main()
@@ -45,16 +47,59 @@ int main()
   
   while((length = getlineL(curr_line, MAX_SIZE)) > 0)
   {
-    if(length > 8)
+    if(length > 80)
       printf("array = %s length of array = %d",curr_line, length);
   }
    
-#endif            
+#endif   
+
+#if EXERCISE_1_19
+  char curr_line[MAX_SIZE];
+  char FilteredLine[MAX_SIZE];
+  while (removeTrailingBlanksTabs(curr_line, FilteredLine,  MAX_SIZE) > 0)
+    printf("Final line = %s\n",FilteredLine);
+#endif         
   return 0;
 }
 
 /**
-Returns the line
+Removes the trailing
+1.tabs
+2.blanks
+*/
+int removeTrailingBlanksTabs(char line[], char FilteredLine[],  int max_length)
+{
+  int c, i, j, removetrail;
+  c = i = removetrail = 0;
+  for(i = 0; i < max_length && (c = getchar()) != EOF && c != '\n'; ++i)
+    line[i]  = c ;
+  
+  for(j = i - 1; j > 0 ; j--)
+  {
+    if(line[j] == '\t' || line[j] == ' ')
+      removetrail = 1;
+    else
+    {
+      if(removetrail)
+        j++; 
+      break;
+    }
+  }
+  if(removetrail)
+  {
+    for(int k = 0; k < j ; k++)
+      FilteredLine[k] = line[k];
+  }
+  else
+  {
+    for(int k = 0; k < i ; k++)
+      FilteredLine[k] = line[k];
+  }
+
+ return i ;
+}
+/**
+Returns the line length
 */
 int getlineL(char line[], int max_length)
 {
