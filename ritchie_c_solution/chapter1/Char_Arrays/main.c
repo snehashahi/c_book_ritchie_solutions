@@ -11,13 +11,15 @@ Version      : 1.0.0
 /*****************************************************/
 /*Select the follwing flag to run the particular test*/
 #define COPY_LONGEST_LINE   0 //Finds the getline and copy the maximum line
-#define EXERCISE_1_18       0 //Print all the input line that are greater than 80 character
-#define EXERCISE_1_19       0 //Removing trailing lines and tabs from a line
+#define EXERCISE_1_17       0 //Print all the input line that are greater than 80 character
+#define EXERCISE_1_18       0 //Removing trailing lines and tabs from a line
+#define EXERCISE_1_19       0 //Reversesa string
 /*****************************************************/
 
 int getlineL(char line[], int max_length);
 void copy(char dest[], char src[]);
 int removeTrailingBlanksTabs(char line[], char FilteredLine[],  int max_length);
+int reverseString(char inp[], char out[], int max_length);
 #define MAX_SIZE 1000 //maximumsize of the array
 
 int main()
@@ -39,7 +41,7 @@ int main()
     printf("length of line =%d line =%s \n", max, longestLine); 
 #endif
 
-#if EXERCISE_1_18
+#if EXERCISE_1_17
   char curr_line[MAX_SIZE];
   
   int length;
@@ -53,15 +55,47 @@ int main()
    
 #endif   
 
-#if EXERCISE_1_19
+#if EXERCISE_1_18
   char curr_line[MAX_SIZE];
   char FilteredLine[MAX_SIZE];
   while (removeTrailingBlanksTabs(curr_line, FilteredLine,  MAX_SIZE) > 0)
-    printf("Final line = %s\n",FilteredLine);
+    printf("Final line = %s\n", FilteredLine);
+#endif
+
+#if EXERCISE_1_19
+  char currLine[MAX_SIZE];
+  char reverseLine[MAX_SIZE];
+  while (reverseString(currLine, reverseLine,  MAX_SIZE) > 0)
+    printf("Final line = %s\n", reverseLine);
 #endif         
   return 0;
 }
+/**
+Reverses a string 
+*/
+int reverseString(char inp[], char out[], int max_length)
+{
+  int i, c, length;
+  i = c = length = 0;
+  for(i = 0; i < max_length && (c = getchar()) != EOF && c != '\n'; ++i)
+    inp[i] = c;
 
+  if(c == '\n')
+  {
+    inp[i] = c;
+    ++i;
+  }
+
+  inp[i] = '\0';
+  length = i - 1;
+  for(int j = 0 ; j <= length; j++)
+  {
+    out[j] = inp[i-1];
+    i--;  
+  }  
+
+  return length;
+}
 /**
 Removes the trailing
 1.tabs
