@@ -12,6 +12,7 @@ Version      : 1.0.0
 /*Select the follwing flag to run the particular test*/
 #define EXAMPLES_SQUEEZE     0   //Squeeze the character from array
 #define EXAMPLES_STRCAT      0   //Conctanate 2 strings
+#define EXERCISE_2_4         0   //Squeeze array if the element matches with other array
 /*****************************************************/
 
 /**
@@ -31,7 +32,26 @@ void squeeze(char s[], char c)
   s[j] = '\0';
   printf("the string is %s\n", s);
 }
-
+/**
+Remove the character of s1 if the character of s1 matches with s2
+@input s1    First array 
+@input s2    Second array whose character needs to be checked
+@return      none
+*/
+void squeezeMatchCharacter(char s1[], char s2[])
+{
+  int k = 0;
+  for(int i = 0; s2[i] != '\0'; i++)
+  {
+    for(int j = k = 0; s1[j] != '\0'; j++)
+    {
+      if(s1[j] != s2[i])
+        s1[k++] = s1[j];
+    }
+    s1[k] = '\0';
+  }
+  printf("The string is %s %s\n", s1, s2);
+}
 /**
 Concatenate 2nd array at the end of first array
 @input char [] InputArray1
@@ -54,14 +74,20 @@ void strcatLocal(char inputArray1[], char inputArray2[])
 int main()
 {
 #if EXAMPLES_SQUEEZE
-  char inputArray[6] = "abcdef";
+  char inputArray[] = "abcdef";
   squeeze(inputArray, 'c');
 #endif
 
 #if EXAMPLES_STRCAT
-  char array1[11] = "abcdef";
-  char array2[10] = "ghijk";
+  char array1[] = "abcdef";
+  char array2[] = "ghijk";
   strcatLocal(array1, array2);
+#endif
+
+#if EXERCISE_2_4
+  char inputArray1[] = "abcdef";
+  char inputArray2[] = "ab";
+  squeezeMatchCharacter(inputArray1, inputArray2);
 #endif
   return 0;
 }
