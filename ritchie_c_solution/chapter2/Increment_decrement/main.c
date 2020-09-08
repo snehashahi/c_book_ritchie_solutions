@@ -13,6 +13,7 @@ Version      : 1.0.0
 #define EXAMPLES_SQUEEZE     0   //Squeeze the character from array
 #define EXAMPLES_STRCAT      0   //Conctanate 2 strings
 #define EXERCISE_2_4         0   //Squeeze array if the element matches with other array
+#define EXERCISE_2_5         0   //Returns the first location of array1 where the character matches
 /*****************************************************/
 
 /**
@@ -71,6 +72,27 @@ void strcatLocal(char inputArray1[], char inputArray2[])
   }
   printf("concatenated str %s  \n", inputArray1);
 }
+/**
+any:It returns first location where the character from second array matches first array
+    If there is no character matching , it returns -1
+@input s1 First array
+@input s2 Second array
+return length
+*/
+int any(char s1[], char s2[])
+{
+  for(int i = 0; s2[i] != '\0'; i++)
+  {
+    for(int j = 0; s1[j] != '\0';j++)
+    {
+      if(s1[j] == s2[i])
+        return j;
+    }
+  }
+
+  return -1;
+}
+
 int main()
 {
 #if EXAMPLES_SQUEEZE
@@ -88,6 +110,13 @@ int main()
   char inputArray1[] = "abcdef";
   char inputArray2[] = "ab";
   squeezeMatchCharacter(inputArray1, inputArray2);
+#endif
+
+#if EXERCISE_2_5
+ char inputArray1[] = "abcdef";
+ char inputArray2[] = "ggd";
+ int length = any(inputArray1, inputArray2);
+ printf("The length where the character matched at location  %d\n", length);
 #endif
   return 0;
 }
