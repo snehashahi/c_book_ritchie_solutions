@@ -12,6 +12,7 @@ Version      : 1.0.0
 /*Select the follwing flag to run the particular test*/
 #define EXERCISE_2_6          0 //Set bits from one position
 #define EXERCISE_2_7          0 //Invert the number
+#define EXERCISE_2_8          0 //Right rotation
 /*****************************************************/
 /**
 setbits it returns x with n bits  starting at posiion p with n bits
@@ -32,7 +33,16 @@ int invert(int x, int p, int n)
 {
   return x ^ (~(~0 << n) << (p + 1 - n));
 }
-
+/**
+Rightrot: Rotate a number to right by 9 digits
+@input x 
+@input n
+return n intwgwr rotated by n position
+*/
+int rightrot(int x, int n)
+{
+  return(((x & ~(~0 << n)) << ((sizeof(x) * 8) - n)) | (x >> n));
+}
 int main()
 {
 #if EXERCISE_2_6
@@ -43,6 +53,9 @@ int main()
   int invertedNum = invert(8, 3, 3);
   printf("The inverted number is %d\n", invertedNum);
 #endif
+#if EXERCISE_2_8
+  int rightrotdNum = rightrot(0xf5f5ff00, 16);
+  printf("the right rotaed number %x\n", rightrotdNum);
+#endif
   return 0;
 }
-
